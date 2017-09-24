@@ -1,0 +1,10 @@
+CREATE USER swzu UNENCRYPTED PASSWORD 'swzu' CREATEDB SUPERUSER;
+
+CREATE DATABASE swzu WITH OWNER = swzu ENCODING = 'UTF8' TABLESPACE = pg_default;
+
+GRANT ALL ON DATABASE swzu TO swzu;
+
+ALTER DATABASE swzu SET standard_conforming_strings='on';
+
+
+
