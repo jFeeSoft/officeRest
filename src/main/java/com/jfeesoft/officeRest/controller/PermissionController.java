@@ -21,7 +21,7 @@ public class PermissionController {
 	private PermissionService permissionService;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	@ResponseStatus(value = HttpStatus.OK)
 	public Collection<Permission> getAll() {
 		Iterable<Permission> permissions = permissionService.findAll();
 		return Lists.newArrayList(permissions);
