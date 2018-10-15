@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.jfeesoft.swzu",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.4.2",
+    "applicationType": "monolith",
+    "baseName": "officeRest",
+    "packageName": "com.jfeesoft.swzu",
+    "packageFolder": "com/jfeesoft/swzu",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NzRjYTNhOWE4Y2FiZDcyOGQ4Yjg5YzA0NTk5ZDcyYWIxZjg4ZWRhM2M1ZTNmY2QxNDU4NDM4NTNlYmQ1OWU0MTdhYzBkZWFiYjUxMTNmODE4NmI1ZjUxNjI3Y2YzODExMTA2Nzg2NGEwN2M5NmMzN2YwNjQ2YTMyYzFkMzc3ZjQ=",
+    "clientFramework": "angularX",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "pl"
+    ]
+  }
+}

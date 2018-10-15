@@ -1,0 +1,11 @@
+version: '2'
+services:
+    officerest-postgresql:
+        image: postgres:10.4
+        # volumes:
+        #     - ~/volumes/jhipster/officeRest/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=officeRest
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432
