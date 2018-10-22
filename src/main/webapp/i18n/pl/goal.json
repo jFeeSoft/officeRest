@@ -1,0 +1,27 @@
+
+{
+    "officeRestApp": {
+        "goal" : {
+            "home": {
+                "title": "Goal",
+                "createLabel": "Dodaj Goal",
+                "createOrEditLabel": "Dodaj lub edytuj: Goal"
+            },
+            "created": "Utworzono nowy obiekt typu Goal z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono obiekt typu Goal z identyfikatorem {{ param }}",
+            "deleted": "Usunięto obiekt typu Goal z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Goal {{ id }}?"
+            },
+            "detail": {
+                "title": "Goal"
+            },
+            "name": "Name",
+            "dateFrom": "Date From",
+            "dateTo": "Date To",
+            "version": "Version",
+            "status": "Status",
+            "task": "Task"
+        }
+    }
+}

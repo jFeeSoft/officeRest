@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="goal">
+            <h2><span jhiTranslate="officeRestApp.goal.detail.title">Goal</span> {{goal.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="officeRestApp.goal.name">Name</span></dt>
+                <dd>
+                    <span>{{goal.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="officeRestApp.goal.dateFrom">Date From</span></dt>
+                <dd>
+                    <span>{{goal.dateFrom}}</span>
+                </dd>
+                <dt><span jhiTranslate="officeRestApp.goal.dateTo">Date To</span></dt>
+                <dd>
+                    <span>{{goal.dateTo}}</span>
+                </dd>
+                <dt><span jhiTranslate="officeRestApp.goal.version">Version</span></dt>
+                <dd>
+                    <span>{{goal.version}}</span>
+                </dd>
+                <dt><span jhiTranslate="officeRestApp.goal.status">Status</span></dt>
+                <dd>
+                    <span>{{goal.status}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/goal', goal.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

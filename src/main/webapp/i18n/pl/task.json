@@ -1,0 +1,27 @@
+
+{
+    "officeRestApp": {
+        "task" : {
+            "home": {
+                "title": "Task",
+                "createLabel": "Dodaj Task",
+                "createOrEditLabel": "Dodaj lub edytuj: Task"
+            },
+            "created": "Utworzono nowy obiekt typu Task z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono obiekt typu Task z identyfikatorem {{ param }}",
+            "deleted": "Usunięto obiekt typu Task z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Task {{ id }}?"
+            },
+            "detail": {
+                "title": "Task"
+            },
+            "name": "Name",
+            "dateFrom": "Date From",
+            "dateTo": "Date To",
+            "vesrion": "Vesrion",
+            "status": "Status",
+            "goal": "Goal"
+        }
+    }
+}
