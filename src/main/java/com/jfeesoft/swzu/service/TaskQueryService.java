@@ -98,11 +98,11 @@ public class TaskQueryService extends QueryService<Task> {
             if (criteria.getDateTo() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getDateTo(), Task_.dateTo));
             }
-            if (criteria.getVesrion() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getVesrion(), Task_.vesrion));
+            if (criteria.getVersion() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getVersion(), Task_.version));
             }
             if (criteria.getStatus() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getStatus(), Task_.status));
+                specification = specification.and(buildSpecification(criteria.getStatus(), Task_.status));
             }
             if (criteria.getGoalId() != null) {
                 specification = specification.and(buildSpecification(criteria.getGoalId(),

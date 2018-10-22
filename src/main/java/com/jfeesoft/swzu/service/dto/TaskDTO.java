@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
+import com.jfeesoft.swzu.domain.enumeration.Status;
 
 /**
  * A DTO for the Task entity.
@@ -19,10 +20,10 @@ public class TaskDTO implements Serializable {
 
     private LocalDate dateTo;
 
-    private Long vesrion;
+    private Long version;
 
-    @Size(max = 16)
-    private String status;
+    @NotNull
+    private Status status;
 
     private Long goalId;
 
@@ -58,19 +59,19 @@ public class TaskDTO implements Serializable {
         this.dateTo = dateTo;
     }
 
-    public Long getVesrion() {
-        return vesrion;
+    public Long getVersion() {
+        return version;
     }
 
-    public void setVesrion(Long vesrion) {
-        this.vesrion = vesrion;
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
@@ -110,7 +111,7 @@ public class TaskDTO implements Serializable {
             ", name='" + getName() + "'" +
             ", dateFrom='" + getDateFrom() + "'" +
             ", dateTo='" + getDateTo() + "'" +
-            ", vesrion=" + getVesrion() +
+            ", version=" + getVersion() +
             ", status='" + getStatus() + "'" +
             ", goal=" + getGoalId() +
             "}";

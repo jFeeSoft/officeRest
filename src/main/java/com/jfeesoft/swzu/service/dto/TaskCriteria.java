@@ -2,6 +2,7 @@ package com.jfeesoft.swzu.service.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
+import com.jfeesoft.swzu.domain.enumeration.Status;
 import io.github.jhipster.service.filter.BooleanFilter;
 import io.github.jhipster.service.filter.DoubleFilter;
 import io.github.jhipster.service.filter.Filter;
@@ -20,6 +21,11 @@ import io.github.jhipster.service.filter.LocalDateFilter;
  * fix type specific filters.
  */
 public class TaskCriteria implements Serializable {
+    /**
+     * Class for filtering Status
+     */
+    public static class StatusFilter extends Filter<Status> {
+    }
 
     private static final long serialVersionUID = 1L;
 
@@ -31,9 +37,9 @@ public class TaskCriteria implements Serializable {
 
     private LocalDateFilter dateTo;
 
-    private LongFilter vesrion;
+    private LongFilter version;
 
-    private StringFilter status;
+    private StatusFilter status;
 
     private LongFilter goalId;
 
@@ -72,19 +78,19 @@ public class TaskCriteria implements Serializable {
         this.dateTo = dateTo;
     }
 
-    public LongFilter getVesrion() {
-        return vesrion;
+    public LongFilter getVersion() {
+        return version;
     }
 
-    public void setVesrion(LongFilter vesrion) {
-        this.vesrion = vesrion;
+    public void setVersion(LongFilter version) {
+        this.version = version;
     }
 
-    public StringFilter getStatus() {
+    public StatusFilter getStatus() {
         return status;
     }
 
-    public void setStatus(StringFilter status) {
+    public void setStatus(StatusFilter status) {
         this.status = status;
     }
 
@@ -111,7 +117,7 @@ public class TaskCriteria implements Serializable {
             Objects.equals(name, that.name) &&
             Objects.equals(dateFrom, that.dateFrom) &&
             Objects.equals(dateTo, that.dateTo) &&
-            Objects.equals(vesrion, that.vesrion) &&
+            Objects.equals(version, that.version) &&
             Objects.equals(status, that.status) &&
             Objects.equals(goalId, that.goalId);
     }
@@ -123,7 +129,7 @@ public class TaskCriteria implements Serializable {
         name,
         dateFrom,
         dateTo,
-        vesrion,
+        version,
         status,
         goalId
         );
@@ -136,7 +142,7 @@ public class TaskCriteria implements Serializable {
                 (name != null ? "name=" + name + ", " : "") +
                 (dateFrom != null ? "dateFrom=" + dateFrom + ", " : "") +
                 (dateTo != null ? "dateTo=" + dateTo + ", " : "") +
-                (vesrion != null ? "vesrion=" + vesrion + ", " : "") +
+                (version != null ? "version=" + version + ", " : "") +
                 (status != null ? "status=" + status + ", " : "") +
                 (goalId != null ? "goalId=" + goalId + ", " : "") +
             "}";

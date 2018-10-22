@@ -1,9 +1,11 @@
 package com.jfeesoft.swzu.domain;
 
+import com.jfeesoft.swzu.domain.enumeration.Status;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -40,9 +42,10 @@ public class Goal implements Serializable {
     @Column(name = "version")
     private Long version;
 
-    @Size(max = 16)
-    @Column(name = "status", length = 16)
-    private String status;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private Status status;
 
     @OneToMany(mappedBy = "goal")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -109,16 +112,16 @@ public class Goal implements Serializable {
         this.version = version;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public Goal status(String status) {
+    public Goal status(Status status) {
         this.status = status;
         return this;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

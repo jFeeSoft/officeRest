@@ -7,7 +7,7 @@ import { take, map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { TaskService } from 'app/entities/task/task.service';
-import { ITask, Task } from 'app/shared/model/task.model';
+import { ITask, Task, Status } from 'app/shared/model/task.model';
 
 describe('Service Tests', () => {
     describe('Task Service', () => {
@@ -25,7 +25,7 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new Task(0, 'AAAAAAA', currentDate, currentDate, 0, 'AAAAAAA');
+            elemDefault = new Task(0, 'AAAAAAA', currentDate, currentDate, 0, Status.CREATED);
         });
 
         describe('Service methods', async () => {
@@ -76,7 +76,7 @@ describe('Service Tests', () => {
                         name: 'BBBBBB',
                         dateFrom: currentDate.format(DATE_FORMAT),
                         dateTo: currentDate.format(DATE_FORMAT),
-                        vesrion: 1,
+                        version: 1,
                         status: 'BBBBBB'
                     },
                     elemDefault
@@ -103,7 +103,7 @@ describe('Service Tests', () => {
                         name: 'BBBBBB',
                         dateFrom: currentDate.format(DATE_FORMAT),
                         dateTo: currentDate.format(DATE_FORMAT),
-                        vesrion: 1,
+                        version: 1,
                         status: 'BBBBBB'
                     },
                     elemDefault

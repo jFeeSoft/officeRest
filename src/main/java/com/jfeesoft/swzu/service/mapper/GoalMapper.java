@@ -1,9 +1,9 @@
 package com.jfeesoft.swzu.service.mapper;
 
-import com.jfeesoft.swzu.domain.*;
+import com.jfeesoft.swzu.domain.Goal;
 import com.jfeesoft.swzu.service.dto.GoalDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity Goal and its DTO GoalDTO.

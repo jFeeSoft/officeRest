@@ -41,6 +41,7 @@ public class CacheConfiguration {
             cm.createCache(com.jfeesoft.swzu.domain.Goal.class.getName(), jcacheConfiguration);
             cm.createCache(com.jfeesoft.swzu.domain.Task.class.getName(), jcacheConfiguration);
             cm.createCache(com.jfeesoft.swzu.domain.Goal.class.getName() + ".tasks", jcacheConfiguration);
+            cm.createCache(com.jfeesoft.swzu.domain.Goal.class.getName() + ".ffs", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

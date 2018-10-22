@@ -30,7 +30,7 @@
                 <td>{{goal.dateFrom | date:'mediumDate'}}</td>
                 <td>{{goal.dateTo | date:'mediumDate'}}</td>
                 <td>{{goal.version}}</td>
-                <td>{{goal.status}}</td>
+                <td jhiTranslate="{{'officeRestApp.Status.' + goal.status}}">{{goal.status}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

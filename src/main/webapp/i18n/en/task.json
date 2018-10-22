@@ -19,7 +19,7 @@
             "name": "Name",
             "dateFrom": "Date From",
             "dateTo": "Date To",
-            "vesrion": "Vesrion",
+            "version": "Version",
             "status": "Status",
             "goal": "Goal"
         }

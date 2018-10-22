@@ -7,7 +7,7 @@ import { take, map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { GoalService } from 'app/entities/goal/goal.service';
-import { IGoal, Goal } from 'app/shared/model/goal.model';
+import { IGoal, Goal, Status } from 'app/shared/model/goal.model';
 
 describe('Service Tests', () => {
     describe('Goal Service', () => {
@@ -25,7 +25,7 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new Goal(0, 'AAAAAAA', currentDate, currentDate, 0, 'AAAAAAA');
+            elemDefault = new Goal(0, 'AAAAAAA', currentDate, currentDate, 0, Status.CREATED);
         });
 
         describe('Service methods', async () => {

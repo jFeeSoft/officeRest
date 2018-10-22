@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
+import com.jfeesoft.swzu.domain.enumeration.Status;
 
 /**
  * A DTO for the Goal entity.
@@ -21,8 +22,8 @@ public class GoalDTO implements Serializable {
 
     private Long version;
 
-    @Size(max = 16)
-    private String status;
+    @NotNull
+    private Status status;
 
     public Long getId() {
         return id;
@@ -64,11 +65,11 @@ public class GoalDTO implements Serializable {
         this.version = version;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

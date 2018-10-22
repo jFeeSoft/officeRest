@@ -38,6 +38,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.jfeesoft.swzu.domain.enumeration.Status;
 /**
  * Test class for the TaskResource REST controller.
  *
@@ -56,11 +57,11 @@ public class TaskResourceIntTest {
     private static final LocalDate DEFAULT_DATE_TO = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATE_TO = LocalDate.now(ZoneId.systemDefault());
 
-    private static final Long DEFAULT_VESRION = 1L;
-    private static final Long UPDATED_VESRION = 2L;
+    private static final Long DEFAULT_VERSION = 1L;
+    private static final Long UPDATED_VERSION = 2L;
 
-    private static final String DEFAULT_STATUS = "AAAAAAAAAA";
-    private static final String UPDATED_STATUS = "BBBBBBBBBB";
+    private static final Status DEFAULT_STATUS = Status.CREATED;
+    private static final Status UPDATED_STATUS = Status.NEW;
 
     @Autowired
     private TaskRepository taskRepository;
@@ -112,7 +113,7 @@ public class TaskResourceIntTest {
             .name(DEFAULT_NAME)
             .dateFrom(DEFAULT_DATE_FROM)
             .dateTo(DEFAULT_DATE_TO)
-            .vesrion(DEFAULT_VESRION)
+            .version(DEFAULT_VERSION)
             .status(DEFAULT_STATUS);
         // Add required entity
         Goal goal = GoalResourceIntTest.createEntity(em);
@@ -146,7 +147,7 @@ public class TaskResourceIntTest {
         assertThat(testTask.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testTask.getDateFrom()).isEqualTo(DEFAULT_DATE_FROM);
         assertThat(testTask.getDateTo()).isEqualTo(DEFAULT_DATE_TO);
-        assertThat(testTask.getVesrion()).isEqualTo(DEFAULT_VESRION);
+        assertThat(testTask.getVersion()).isEqualTo(DEFAULT_VERSION);
         assertThat(testTask.getStatus()).isEqualTo(DEFAULT_STATUS);
     }
 
@@ -172,6 +173,25 @@ public class TaskResourceIntTest {
 
     @Test
     @Transactional
+    public void checkStatusIsRequired() throws Exception {
+        int databaseSizeBeforeTest = taskRepository.findAll().size();
+        // set the field null
+        task.setStatus(null);
+
+        // Create the Task, which fails.
+        TaskDTO taskDTO = taskMapper.toDto(task);
+
+        restTaskMockMvc.perform(post("/api/tasks")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(taskDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Task> taskList = taskRepository.findAll();
+        assertThat(taskList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllTasks() throws Exception {
         // Initialize the database
         taskRepository.saveAndFlush(task);
@@ -184,7 +204,7 @@ public class TaskResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].dateFrom").value(hasItem(DEFAULT_DATE_FROM.toString())))
             .andExpect(jsonPath("$.[*].dateTo").value(hasItem(DEFAULT_DATE_TO.toString())))
-            .andExpect(jsonPath("$.[*].vesrion").value(hasItem(DEFAULT_VESRION.intValue())))
+            .andExpect(jsonPath("$.[*].version").value(hasItem(DEFAULT_VERSION.intValue())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
     
@@ -202,7 +222,7 @@ public class TaskResourceIntTest {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.dateFrom").value(DEFAULT_DATE_FROM.toString()))
             .andExpect(jsonPath("$.dateTo").value(DEFAULT_DATE_TO.toString()))
-            .andExpect(jsonPath("$.vesrion").value(DEFAULT_VESRION.intValue()))
+            .andExpect(jsonPath("$.version").value(DEFAULT_VERSION.intValue()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
 
@@ -379,67 +399,67 @@ public class TaskResourceIntTest {
 
     @Test
     @Transactional
-    public void getAllTasksByVesrionIsEqualToSomething() throws Exception {
+    public void getAllTasksByVersionIsEqualToSomething() throws Exception {
         // Initialize the database
         taskRepository.saveAndFlush(task);
 
-        // Get all the taskList where vesrion equals to DEFAULT_VESRION
-        defaultTaskShouldBeFound("vesrion.equals=" + DEFAULT_VESRION);
+        // Get all the taskList where version equals to DEFAULT_VERSION
+        defaultTaskShouldBeFound("version.equals=" + DEFAULT_VERSION);
 
-        // Get all the taskList where vesrion equals to UPDATED_VESRION
-        defaultTaskShouldNotBeFound("vesrion.equals=" + UPDATED_VESRION);
+        // Get all the taskList where version equals to UPDATED_VERSION
+        defaultTaskShouldNotBeFound("version.equals=" + UPDATED_VERSION);
     }
 
     @Test
     @Transactional
-    public void getAllTasksByVesrionIsInShouldWork() throws Exception {
+    public void getAllTasksByVersionIsInShouldWork() throws Exception {
         // Initialize the database
         taskRepository.saveAndFlush(task);
 
-        // Get all the taskList where vesrion in DEFAULT_VESRION or UPDATED_VESRION
-        defaultTaskShouldBeFound("vesrion.in=" + DEFAULT_VESRION + "," + UPDATED_VESRION);
+        // Get all the taskList where version in DEFAULT_VERSION or UPDATED_VERSION
+        defaultTaskShouldBeFound("version.in=" + DEFAULT_VERSION + "," + UPDATED_VERSION);
 
-        // Get all the taskList where vesrion equals to UPDATED_VESRION
-        defaultTaskShouldNotBeFound("vesrion.in=" + UPDATED_VESRION);
+        // Get all the taskList where version equals to UPDATED_VERSION
+        defaultTaskShouldNotBeFound("version.in=" + UPDATED_VERSION);
     }
 
     @Test
     @Transactional
-    public void getAllTasksByVesrionIsNullOrNotNull() throws Exception {
+    public void getAllTasksByVersionIsNullOrNotNull() throws Exception {
         // Initialize the database
         taskRepository.saveAndFlush(task);
 
-        // Get all the taskList where vesrion is not null
-        defaultTaskShouldBeFound("vesrion.specified=true");
+        // Get all the taskList where version is not null
+        defaultTaskShouldBeFound("version.specified=true");
 
-        // Get all the taskList where vesrion is null
-        defaultTaskShouldNotBeFound("vesrion.specified=false");
+        // Get all the taskList where version is null
+        defaultTaskShouldNotBeFound("version.specified=false");
     }
 
     @Test
     @Transactional
-    public void getAllTasksByVesrionIsGreaterThanOrEqualToSomething() throws Exception {
+    public void getAllTasksByVersionIsGreaterThanOrEqualToSomething() throws Exception {
         // Initialize the database
         taskRepository.saveAndFlush(task);
 
-        // Get all the taskList where vesrion greater than or equals to DEFAULT_VESRION
-        defaultTaskShouldBeFound("vesrion.greaterOrEqualThan=" + DEFAULT_VESRION);
+        // Get all the taskList where version greater than or equals to DEFAULT_VERSION
+        defaultTaskShouldBeFound("version.greaterOrEqualThan=" + DEFAULT_VERSION);
 
-        // Get all the taskList where vesrion greater than or equals to UPDATED_VESRION
-        defaultTaskShouldNotBeFound("vesrion.greaterOrEqualThan=" + UPDATED_VESRION);
+        // Get all the taskList where version greater than or equals to UPDATED_VERSION
+        defaultTaskShouldNotBeFound("version.greaterOrEqualThan=" + UPDATED_VERSION);
     }
 
     @Test
     @Transactional
-    public void getAllTasksByVesrionIsLessThanSomething() throws Exception {
+    public void getAllTasksByVersionIsLessThanSomething() throws Exception {
         // Initialize the database
         taskRepository.saveAndFlush(task);
 
-        // Get all the taskList where vesrion less than or equals to DEFAULT_VESRION
-        defaultTaskShouldNotBeFound("vesrion.lessThan=" + DEFAULT_VESRION);
+        // Get all the taskList where version less than or equals to DEFAULT_VERSION
+        defaultTaskShouldNotBeFound("version.lessThan=" + DEFAULT_VERSION);
 
-        // Get all the taskList where vesrion less than or equals to UPDATED_VESRION
-        defaultTaskShouldBeFound("vesrion.lessThan=" + UPDATED_VESRION);
+        // Get all the taskList where version less than or equals to UPDATED_VERSION
+        defaultTaskShouldBeFound("version.lessThan=" + UPDATED_VERSION);
     }
 
 
@@ -511,7 +531,7 @@ public class TaskResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].dateFrom").value(hasItem(DEFAULT_DATE_FROM.toString())))
             .andExpect(jsonPath("$.[*].dateTo").value(hasItem(DEFAULT_DATE_TO.toString())))
-            .andExpect(jsonPath("$.[*].vesrion").value(hasItem(DEFAULT_VESRION.intValue())))
+            .andExpect(jsonPath("$.[*].version").value(hasItem(DEFAULT_VERSION.intValue())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
 
         // Check, that the count call also returns 1
@@ -563,7 +583,7 @@ public class TaskResourceIntTest {
             .name(UPDATED_NAME)
             .dateFrom(UPDATED_DATE_FROM)
             .dateTo(UPDATED_DATE_TO)
-            .vesrion(UPDATED_VESRION)
+            .version(UPDATED_VERSION)
             .status(UPDATED_STATUS);
         TaskDTO taskDTO = taskMapper.toDto(updatedTask);
 
@@ -579,7 +599,7 @@ public class TaskResourceIntTest {
         assertThat(testTask.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testTask.getDateFrom()).isEqualTo(UPDATED_DATE_FROM);
         assertThat(testTask.getDateTo()).isEqualTo(UPDATED_DATE_TO);
-        assertThat(testTask.getVesrion()).isEqualTo(UPDATED_VESRION);
+        assertThat(testTask.getVersion()).isEqualTo(UPDATED_VERSION);
         assertThat(testTask.getStatus()).isEqualTo(UPDATED_STATUS);
     }
 

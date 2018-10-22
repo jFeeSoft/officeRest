@@ -21,7 +21,8 @@
             "dateTo": "Date To",
             "version": "Version",
             "status": "Status",
-            "task": "Task"
+            "task": "Task",
+            "ff": "Ff"
         }
     }
 }

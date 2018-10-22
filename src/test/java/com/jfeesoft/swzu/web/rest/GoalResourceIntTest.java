@@ -1,17 +1,15 @@
 package com.jfeesoft.swzu.web.rest;
 
 import com.jfeesoft.swzu.OfficeRestApp;
-
 import com.jfeesoft.swzu.domain.Goal;
 import com.jfeesoft.swzu.domain.Task;
+import com.jfeesoft.swzu.domain.enumeration.Status;
 import com.jfeesoft.swzu.repository.GoalRepository;
+import com.jfeesoft.swzu.service.GoalQueryService;
 import com.jfeesoft.swzu.service.GoalService;
 import com.jfeesoft.swzu.service.dto.GoalDTO;
 import com.jfeesoft.swzu.service.mapper.GoalMapper;
 import com.jfeesoft.swzu.web.rest.errors.ExceptionTranslator;
-import com.jfeesoft.swzu.service.dto.GoalCriteria;
-import com.jfeesoft.swzu.service.GoalQueryService;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +28,6 @@ import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
-
 
 import static com.jfeesoft.swzu.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -59,15 +56,15 @@ public class GoalResourceIntTest {
     private static final Long DEFAULT_VERSION = 1L;
     private static final Long UPDATED_VERSION = 2L;
 
-    private static final String DEFAULT_STATUS = "AAAAAAAAAA";
-    private static final String UPDATED_STATUS = "BBBBBBBBBB";
+    private static final Status DEFAULT_STATUS = Status.CREATED;
+    private static final Status UPDATED_STATUS = Status.NEW;
 
     @Autowired
     private GoalRepository goalRepository;
 
     @Autowired
     private GoalMapper goalMapper;
-    
+
     @Autowired
     private GoalService goalService;
 
@@ -103,7 +100,7 @@ public class GoalResourceIntTest {
 
     /**
      * Create an entity for this test.
-     *
+     * <p>
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -167,6 +164,25 @@ public class GoalResourceIntTest {
 
     @Test
     @Transactional
+    public void checkStatusIsRequired() throws Exception {
+        int databaseSizeBeforeTest = goalRepository.findAll().size();
+        // set the field null
+        goal.setStatus(null);
+
+        // Create the Goal, which fails.
+        GoalDTO goalDTO = goalMapper.toDto(goal);
+
+        restGoalMockMvc.perform(post("/api/goals")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(goalDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Goal> goalList = goalRepository.findAll();
+        assertThat(goalList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllGoals() throws Exception {
         // Initialize the database
         goalRepository.saveAndFlush(goal);
@@ -182,7 +198,7 @@ public class GoalResourceIntTest {
             .andExpect(jsonPath("$.[*].version").value(hasItem(DEFAULT_VERSION.intValue())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getGoal() throws Exception {

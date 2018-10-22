@@ -5,11 +5,13 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+
+import com.jfeesoft.swzu.domain.enumeration.Status;
 
 /**
  * A Task.
@@ -36,17 +38,17 @@ public class Task implements Serializable {
     @Column(name = "date_to")
     private LocalDate dateTo;
 
-    @Version
-    @Column(name = "vesrion")
-    private Long vesrion;
+    @Column(name = "version")
+    private Long version;
 
-    @Size(max = 16)
-    @Column(name = "status", length = 16)
-    private String status;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private Status status;
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties("")
+    @JsonIgnoreProperties("tasks")
     private Goal goal;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -97,29 +99,29 @@ public class Task implements Serializable {
         this.dateTo = dateTo;
     }
 
-    public Long getVesrion() {
-        return vesrion;
+    public Long getVersion() {
+        return version;
     }
 
-    public Task vesrion(Long vesrion) {
-        this.vesrion = vesrion;
+    public Task version(Long version) {
+        this.version = version;
         return this;
     }
 
-    public void setVesrion(Long vesrion) {
-        this.vesrion = vesrion;
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public Task status(String status) {
+    public Task status(Status status) {
         this.status = status;
         return this;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
@@ -164,7 +166,7 @@ public class Task implements Serializable {
             ", name='" + getName() + "'" +
             ", dateFrom='" + getDateFrom() + "'" +
             ", dateTo='" + getDateTo() + "'" +
-            ", vesrion=" + getVesrion() +
+            ", version=" + getVersion() +
             ", status='" + getStatus() + "'" +
             "}";
     }

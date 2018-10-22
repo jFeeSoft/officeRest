@@ -2,6 +2,7 @@ package com.jfeesoft.swzu.service.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
+import com.jfeesoft.swzu.domain.enumeration.Status;
 import io.github.jhipster.service.filter.BooleanFilter;
 import io.github.jhipster.service.filter.DoubleFilter;
 import io.github.jhipster.service.filter.Filter;
@@ -20,6 +21,11 @@ import io.github.jhipster.service.filter.LocalDateFilter;
  * fix type specific filters.
  */
 public class GoalCriteria implements Serializable {
+    /**
+     * Class for filtering Status
+     */
+    public static class StatusFilter extends Filter<Status> {
+    }
 
     private static final long serialVersionUID = 1L;
 
@@ -33,9 +39,11 @@ public class GoalCriteria implements Serializable {
 
     private LongFilter version;
 
-    private StringFilter status;
+    private StatusFilter status;
 
     private LongFilter taskId;
+
+    private LongFilter ffId;
 
     public GoalCriteria() {
     }
@@ -80,11 +88,11 @@ public class GoalCriteria implements Serializable {
         this.version = version;
     }
 
-    public StringFilter getStatus() {
+    public StatusFilter getStatus() {
         return status;
     }
 
-    public void setStatus(StringFilter status) {
+    public void setStatus(StatusFilter status) {
         this.status = status;
     }
 
@@ -94,6 +102,14 @@ public class GoalCriteria implements Serializable {
 
     public void setTaskId(LongFilter taskId) {
         this.taskId = taskId;
+    }
+
+    public LongFilter getFfId() {
+        return ffId;
+    }
+
+    public void setFfId(LongFilter ffId) {
+        this.ffId = ffId;
     }
 
 
@@ -113,7 +129,8 @@ public class GoalCriteria implements Serializable {
             Objects.equals(dateTo, that.dateTo) &&
             Objects.equals(version, that.version) &&
             Objects.equals(status, that.status) &&
-            Objects.equals(taskId, that.taskId);
+            Objects.equals(taskId, that.taskId) &&
+            Objects.equals(ffId, that.ffId);
     }
 
     @Override
@@ -125,7 +142,8 @@ public class GoalCriteria implements Serializable {
         dateTo,
         version,
         status,
-        taskId
+        taskId,
+        ffId
         );
     }
 
@@ -139,6 +157,7 @@ public class GoalCriteria implements Serializable {
                 (version != null ? "version=" + version + ", " : "") +
                 (status != null ? "status=" + status + ", " : "") +
                 (taskId != null ? "taskId=" + taskId + ", " : "") +
+                (ffId != null ? "ffId=" + ffId + ", " : "") +
             "}";
     }
 

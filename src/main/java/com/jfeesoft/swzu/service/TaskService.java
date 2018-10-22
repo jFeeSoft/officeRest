@@ -32,8 +32,8 @@ public class TaskService {
 
     public TaskService(TaskRepository taskRepository, TaskMapper taskMapper, GoalRepository goalRepository) {
         this.taskRepository = taskRepository;
-        this.goalRepository = goalRepository;
         this.taskMapper = taskMapper;
+        this.goalRepository = goalRepository;
     }
 
     /**
@@ -46,8 +46,8 @@ public class TaskService {
         log.debug("Request to save Task : {}", taskDTO);
 
         Task task = taskMapper.toEntity(taskDTO);
-        Optional<Goal> goal = goalRepository.findById(task.getGoal().getId());
-        task.setGoal(goal.get());
+        Goal goal = goalRepository.getOne(task.getGoal().getId());
+        task.setGoal(goal);
         task = taskRepository.save(task);
         return taskMapper.toDto(task);
     }

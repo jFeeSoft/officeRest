@@ -30,16 +30,16 @@
             "fieldType": "LocalDate"
         },
         {
-            "fieldName": "vesrion",
+            "fieldName": "version",
             "fieldType": "Long"
         },
         {
             "fieldName": "status",
-            "fieldType": "String",
+            "fieldType": "Status",
+            "fieldValues": "CREATED,NEW,PAUSED,IN_PROGRESS,DONE",
             "fieldValidateRules": [
-                "maxlength"
-            ],
-            "fieldValidateRulesMaxlength": "16"
+                "required"
+            ]
         }
     ],
     "changelogDate": "20181022092618",

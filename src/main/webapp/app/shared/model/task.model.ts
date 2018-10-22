@@ -1,12 +1,20 @@
 import { Moment } from 'moment';
 
+export const enum Status {
+    CREATED = 'CREATED',
+    NEW = 'NEW',
+    PAUSED = 'PAUSED',
+    IN_PROGRESS = 'IN_PROGRESS',
+    DONE = 'DONE'
+}
+
 export interface ITask {
     id?: number;
     name?: string;
     dateFrom?: Moment;
     dateTo?: Moment;
-    vesrion?: number;
-    status?: string;
+    version?: number;
+    status?: Status;
     goalId?: number;
 }
 
@@ -16,8 +24,8 @@ export class Task implements ITask {
         public name?: string,
         public dateFrom?: Moment,
         public dateTo?: Moment,
-        public vesrion?: number,
-        public status?: string,
+        public version?: number,
+        public status?: Status,
         public goalId?: number
     ) {}
 }

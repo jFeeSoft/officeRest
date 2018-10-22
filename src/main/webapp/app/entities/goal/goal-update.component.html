@@ -47,12 +47,17 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="officeRestApp.goal.status" for="field_status">Status</label>
-                    <input type="text" class="form-control" name="status" id="field_status"
-                        [(ngModel)]="goal.status" maxlength="16"/>
+                    <select class="form-control" name="status" [(ngModel)]="goal.status" id="field_status"  required>
+                        <option value="CREATED">{{'officeRestApp.Status.CREATED' | translate}}</option>
+                        <option value="NEW">{{'officeRestApp.Status.NEW' | translate}}</option>
+                        <option value="PAUSED">{{'officeRestApp.Status.PAUSED' | translate}}</option>
+                        <option value="IN_PROGRESS">{{'officeRestApp.Status.IN_PROGRESS' | translate}}</option>
+                        <option value="DONE">{{'officeRestApp.Status.DONE' | translate}}</option>
+                    </select>
                     <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
                         <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.status?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 16 }">
-                        This field cannot be longer than 16 characters.
+                        [hidden]="!editForm.controls.status?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
                         </small>
                     </div>
                 </div>
