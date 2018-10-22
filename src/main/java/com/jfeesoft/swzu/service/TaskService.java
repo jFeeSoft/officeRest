@@ -1,12 +1,13 @@
 package com.jfeesoft.swzu.service;
 
+import com.jfeesoft.swzu.domain.Goal;
 import com.jfeesoft.swzu.domain.Task;
+import com.jfeesoft.swzu.repository.GoalRepository;
 import com.jfeesoft.swzu.repository.TaskRepository;
 import com.jfeesoft.swzu.service.dto.TaskDTO;
 import com.jfeesoft.swzu.service.mapper.TaskMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,10 +26,13 @@ public class TaskService {
 
     private final TaskRepository taskRepository;
 
+    private final GoalRepository goalRepository;
+
     private final TaskMapper taskMapper;
 
-    public TaskService(TaskRepository taskRepository, TaskMapper taskMapper) {
+    public TaskService(TaskRepository taskRepository, TaskMapper taskMapper, GoalRepository goalRepository) {
         this.taskRepository = taskRepository;
+        this.goalRepository = goalRepository;
         this.taskMapper = taskMapper;
     }
 
@@ -42,6 +46,8 @@ public class TaskService {
         log.debug("Request to save Task : {}", taskDTO);
 
         Task task = taskMapper.toEntity(taskDTO);
+        Optional<Goal> goal = goalRepository.findById(task.getGoal().getId());
+        task.setGoal(goal.get());
         task = taskRepository.save(task);
         return taskMapper.toDto(task);
     }
