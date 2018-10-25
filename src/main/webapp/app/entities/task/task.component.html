@@ -20,7 +20,7 @@
             <th jhiSortBy="dateTo"><span jhiTranslate="officeRestApp.task.dateTo">Date To</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="version"><span jhiTranslate="officeRestApp.task.version">Version</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="status"><span jhiTranslate="officeRestApp.task.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="goalId"><span jhiTranslate="officeRestApp.task.goal">Goal</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="goalName"><span jhiTranslate="officeRestApp.task.goal">Goal</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -34,7 +34,7 @@
                 <td jhiTranslate="{{'officeRestApp.Status.' + task.status}}">{{task.status}}</td>
                 <td>
                     <div *ngIf="task.goalId">
-                        <a [routerLink]="['../goal', task.goalId , 'view' ]" >{{task.goalId}}</a>
+                        <a [routerLink]="['../goal', task.goalId , 'view' ]" >{{task.goalName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

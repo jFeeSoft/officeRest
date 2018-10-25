@@ -9,7 +9,7 @@
             "relationshipValidateRules": [
                 "required"
             ],
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         }
     ],
     "fields": [
@@ -36,13 +36,10 @@
         {
             "fieldName": "status",
             "fieldType": "Status",
-            "fieldValues": "CREATED,NEW,PAUSED,IN_PROGRESS,DONE",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldValues": "NEW,IN_PROGRESS,END"
         }
     ],
-    "changelogDate": "20181022092618",
+    "changelogDate": "20181025133815",
     "dto": "mapstruct",
     "searchEngine": false,
     "service": "serviceClass",

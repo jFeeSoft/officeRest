@@ -47,19 +47,11 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="officeRestApp.goal.status" for="field_status">Status</label>
-                    <select class="form-control" name="status" [(ngModel)]="goal.status" id="field_status"  required>
-                        <option value="CREATED">{{'officeRestApp.Status.CREATED' | translate}}</option>
+                    <select class="form-control" name="status" [(ngModel)]="goal.status" id="field_status" >
                         <option value="NEW">{{'officeRestApp.Status.NEW' | translate}}</option>
-                        <option value="PAUSED">{{'officeRestApp.Status.PAUSED' | translate}}</option>
                         <option value="IN_PROGRESS">{{'officeRestApp.Status.IN_PROGRESS' | translate}}</option>
-                        <option value="DONE">{{'officeRestApp.Status.DONE' | translate}}</option>
+                        <option value="END">{{'officeRestApp.Status.END' | translate}}</option>
                     </select>
-                    <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.status?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
                 </div>
 
             </div>

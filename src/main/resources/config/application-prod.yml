@@ -16,7 +16,7 @@
 logging:
     level:
         ROOT: INFO
-        com.jfeesoft.swzu: INFO
+        com.jfeesoft.offecerest: INFO
         io.github.jhipster: INFO
 
 spring:
@@ -102,7 +102,7 @@ jhipster:
                 # - In the JHipster Registry (which includes a Spring Cloud Config server)
                 # - In a separate `application-prod.yml` file, in the same folder as your executable WAR file
                 # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_SECRET` environment variable
-                base64-secret: NzRjYTNhOWE4Y2FiZDcyOGQ4Yjg5YzA0NTk5ZDcyYWIxZjg4ZWRhM2M1ZTNmY2QxNDU4NDM4NTNlYmQ1OWU0MTdhYzBkZWFiYjUxMTNmODE4NmI1ZjUxNjI3Y2YzODExMTA2Nzg2NGEwN2M5NmMzN2YwNjQ2YTMyYzFkMzc3ZjQ=
+                base64-secret: M2FlNDBmNjQzMjhmZGZlYmJkNWRkYzM0NmM1Y2I3NTVlMWM1YTA0ZWI5MzBhZDBkNzVmNTgyNmFjMzRlN2EwNTZjYTQyNTM3NGMwZGMwMTg0NjhiNmQwYjc3NzliZTg3MWEzNGUwMGEzNTJjN2NlODNiYmFhOTgzMjg3MGQzNjQ=
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000
@@ -112,6 +112,8 @@ jhipster:
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx:
             enabled: true
+        prometheus: 
+            enabled: false #expose metrics via prometheus 
         logs: # Reports Dropwizard metrics in the logs
             enabled: false
             report-frequency: 60 # in seconds

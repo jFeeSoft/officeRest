@@ -14,7 +14,7 @@ type EntityArrayResponseType = HttpResponse<IGoal[]>;
 
 @Injectable({ providedIn: 'root' })
 export class GoalService {
-    private resourceUrl = SERVER_API_URL + 'api/goals';
+    public resourceUrl = SERVER_API_URL + 'api/goals';
 
     constructor(private http: HttpClient) {}
 

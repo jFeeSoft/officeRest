@@ -2,11 +2,9 @@ import { Moment } from 'moment';
 import { ITask } from 'app/shared/model//task.model';
 
 export const enum Status {
-    CREATED = 'CREATED',
     NEW = 'NEW',
-    PAUSED = 'PAUSED',
     IN_PROGRESS = 'IN_PROGRESS',
-    DONE = 'DONE'
+    END = 'END'
 }
 
 export interface IGoal {

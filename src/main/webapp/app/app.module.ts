@@ -1,10 +1,10 @@
 import './vendor.ts';
 
-import { Injector, NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
-import { LocalStorageService, Ng2Webstorage, SessionStorageService } from 'ngx-webstorage';
+import { Ng2Webstorage, LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
@@ -19,8 +19,7 @@ import { OfficeRestAccountModule } from './account/account.module';
 import { OfficeRestEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
-import { ActiveMenuDirective, ErrorComponent, FooterComponent, JhiMainComponent, NavbarComponent, PageRibbonComponent } from './layouts';
-import { ControlModule } from './control/control.module';
+import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
 
 @NgModule({
     imports: [
@@ -31,9 +30,8 @@ import { ControlModule } from './control/control.module';
         OfficeRestCoreModule,
         OfficeRestHomeModule,
         OfficeRestAccountModule,
-        OfficeRestEntityModule,
-        ControlModule
         // jhipster-needle-angular-add-module JHipster will add new module here
+        OfficeRestEntityModule
     ],
     declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
     providers: [

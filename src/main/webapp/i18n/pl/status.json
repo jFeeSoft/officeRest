@@ -2,11 +2,9 @@
     "officeRestApp": {
         "Status" : {
             "null": "",
-            "CREATED": "CREATED",
             "NEW": "NEW",
-            "PAUSED": "PAUSED",
             "IN_PROGRESS": "IN_PROGRESS",
-            "DONE": "DONE"
+            "END": "END"
         }
     }
 }

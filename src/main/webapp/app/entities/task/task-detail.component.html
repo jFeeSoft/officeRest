@@ -28,7 +28,7 @@
                 <dt><span jhiTranslate="officeRestApp.task.goal">Goal</span></dt>
                 <dd>
                     <div *ngIf="task.goalId">
-                        <a [routerLink]="['/goal', task.goalId, 'view']">{{task.goalId}}</a>
+                        <a [routerLink]="['/goal', task.goalId, 'view']">{{task.goalName}}</a>
                     </div>
                 </dd>
             </dl>

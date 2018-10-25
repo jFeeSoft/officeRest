@@ -1,11 +1,9 @@
 import { Moment } from 'moment';
 
 export const enum Status {
-    CREATED = 'CREATED',
     NEW = 'NEW',
-    PAUSED = 'PAUSED',
     IN_PROGRESS = 'IN_PROGRESS',
-    DONE = 'DONE'
+    END = 'END'
 }
 
 export interface ITask {
@@ -15,6 +13,7 @@ export interface ITask {
     dateTo?: Moment;
     version?: number;
     status?: Status;
+    goalName?: string;
     goalId?: number;
 }
 
@@ -26,6 +25,7 @@ export class Task implements ITask {
         public dateTo?: Moment,
         public version?: number,
         public status?: Status,
+        public goalName?: string,
         public goalId?: number
     ) {}
 }

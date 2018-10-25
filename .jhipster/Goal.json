@@ -7,12 +7,6 @@
             "otherEntityName": "task",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "goal"
-        },
-        {
-            "relationshipName": "ff",
-            "otherEntityName": "ff",
-            "relationshipType": "one-to-many",
-            "otherEntityRelationshipName": "goal"
         }
     ],
     "fields": [
@@ -39,13 +33,10 @@
         {
             "fieldName": "status",
             "fieldType": "Status",
-            "fieldValues": "CREATED,NEW,PAUSED,IN_PROGRESS,DONE",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldValues": "NEW,IN_PROGRESS,END"
         }
     ],
-    "changelogDate": "20181022091957",
+    "changelogDate": "20181025133049",
     "dto": "mapstruct",
     "searchEngine": false,
     "service": "serviceClass",

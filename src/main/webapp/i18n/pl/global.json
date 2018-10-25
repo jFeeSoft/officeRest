@@ -5,10 +5,6 @@
         "menu": {
             "home": "Strona domowa",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
-            "controls": {
-                "main": "Kontrola",
-                "goalTask": "Cele i zadania"
-            },
             "entities": {
                 "main": "Encje",
                 "goal": "Goal",
@@ -87,10 +83,10 @@
             }
         },
         "field": {
-            "id": "ID"
+            "id" : "ID"
         },
         "ribbon": {
-            "dev": "Development"
+            "dev":"Development"
         },
         "item-count": "Wyświetlono {{first}} - {{second}} z {{total}} elementów."
     },
