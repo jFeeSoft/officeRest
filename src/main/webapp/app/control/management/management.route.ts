@@ -1,12 +1,12 @@
 import { JhiResolvePagingParams } from 'ng-jhipster';
 import { UserRouteAccessService } from 'app/core';
-import { ManagmentComponent } from 'app/control/managment/managment.component';
 import { Routes } from '@angular/router';
+import { ManagementComponent } from 'app/control/management/management.component';
 
-export const managmentRoute: Routes = [
+export const managementRoute: Routes = [
     {
-        path: 'managment',
-        component: ManagmentComponent,
+        path: 'management',
+        component: ManagementComponent,
         resolve: {
             pagingParams: JhiResolvePagingParams
         },

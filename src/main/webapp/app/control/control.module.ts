@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ManagmentComponent } from './managment/managment.component';
 import { RouterModule } from '@angular/router';
-import { managmentRoute } from 'app/control/managment/managment.route';
 import { JhMaterialModule } from 'app/shared/jh-material/jh-material.module';
+import { ManagementComponent } from 'app/control/management/management.component';
+import { managementRoute } from 'app/control/management/management.route';
 
 @NgModule({
-    imports: [CommonModule, RouterModule.forChild(managmentRoute), JhMaterialModule],
+    imports: [CommonModule, RouterModule.forChild(managementRoute), JhMaterialModule],
     exports: [JhMaterialModule],
-    declarations: [ManagmentComponent]
+    declarations: [ManagementComponent]
 })
 export class OfficeRestControlModule {}
