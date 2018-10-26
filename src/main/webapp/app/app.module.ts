@@ -1,10 +1,10 @@
 import './vendor.ts';
 
-import { NgModule, Injector } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
-import { Ng2Webstorage, LocalStorageService, SessionStorageService } from 'ngx-webstorage';
+import { LocalStorageService, Ng2Webstorage, SessionStorageService } from 'ngx-webstorage';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
@@ -17,13 +17,16 @@ import { OfficeRestAppRoutingModule } from './app-routing.module';
 import { OfficeRestHomeModule } from './home/home.module';
 import { OfficeRestAccountModule } from './account/account.module';
 import { OfficeRestEntityModule } from './entities/entity.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
-import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
+import { ActiveMenuDirective, ErrorComponent, FooterComponent, JhiMainComponent, NavbarComponent, PageRibbonComponent } from './layouts';
+import { OfficeRestControlModule } from 'app/control/control.module';
 
 @NgModule({
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         OfficeRestAppRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
         OfficeRestSharedModule,
@@ -31,7 +34,8 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         OfficeRestHomeModule,
         OfficeRestAccountModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
-        OfficeRestEntityModule
+        OfficeRestEntityModule,
+        OfficeRestControlModule
     ],
     declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
     providers: [
